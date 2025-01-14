@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useFavorites } from '../context/FavoritesContext';
-import { useCart } from '../context/CartContext';  // Assuming CartContext is set up
+import { useCart } from '../context/CartContext'; 
 import { useDarkMode } from '../context/DarkModeContext';
 
 const MovieCard = ({ movie }) => {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
-  const { addToCart, removeFromCart, isInCart } = useCart(); // Cart context
+  const { addToCart, removeFromCart, isInCart } = useCart(); 
   const { darkMode } = useDarkMode();
   const navigate = useNavigate();
 
@@ -20,23 +20,23 @@ const MovieCard = ({ movie }) => {
   } = movie;
 
   const alreadyFavorite = isFavorite(movie);
-  const alreadyInCart = isInCart(trackId); // Check if the movie is already in the cart
+  const alreadyInCart = isInCart(trackId); 
 
   const handleCardClick = () => {
     navigate(`/details/${trackId}`);
   };
 
   const handleAddToCart = (e) => {
-    e.stopPropagation(); // Prevent card click event from triggering
+    e.stopPropagation(); 
     if (alreadyInCart) {
-      removeFromCart(trackId); // Remove from cart
+      removeFromCart(trackId); 
     } else {
-      addToCart(movie); // Add to cart
+      addToCart(movie); 
     }
   };
 
   const handleAddToFavorites = (e) => {
-    e.stopPropagation(); // Prevent card click event from triggering
+    e.stopPropagation(); 
     alreadyFavorite ? removeFavorite(movie) : addFavorite(movie);
   };
 
@@ -60,6 +60,8 @@ const MovieCard = ({ movie }) => {
         </p>
       </div>
       <div className="flex justify-between items-center mt-4">
+
+
         {/* Add/Remove to Favorites Button */}
         <button
           onClick={handleAddToFavorites}
@@ -70,7 +72,12 @@ const MovieCard = ({ movie }) => {
           {alreadyFavorite ? 'Remove' : 'Favorites'}
         </button>
 
+
+
         {/* Add/Remove to Cart Button */}
+
+
+
         <button
           onClick={handleAddToCart}
           className={`px-4 py-2 rounded hover:bg-opacity-80 ${

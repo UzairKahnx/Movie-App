@@ -31,31 +31,30 @@ const HomeScreen = () => {
     } catch (error) {
       console.error('Error fetching movies:', error);
     } finally {
-      setLoading(false); // Set loading state to false after the API call
+      setLoading(false);
     }
   };
 
-  // Fetch movies on initial render or when search term/page changes
   useEffect(() => {
     fetchMovies(searchTerm || 'star', currentPage); // Default search term is 'star'
-  }, [currentPage, searchTerm]); // Added searchTerm to trigger fetch on term change
+  }, [currentPage, searchTerm]);
 
-  // Fetch movies when search term changes
+
   useEffect(() => {
-    setCurrentPage(1); // Reset to page 1 when search term changes
-    setMovies([]); // Reset movies list when search term changes
-    fetchMovies(searchTerm || 'star', 1); // Fetch the first page of movies
+    setCurrentPage(1); 
+    setMovies([]); 
+    fetchMovies(searchTerm || 'star', 1); 
   }, [searchTerm]);
 
   // Next page button handler
   const nextPage = () => {
-    setCurrentPage(currentPage + 1); // Move to the next page
+    setCurrentPage(currentPage + 1); 
   };
 
   // Previous page button handler
   const prevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1); // Move to the previous page
+      setCurrentPage(currentPage - 1); 
     }
   };
 
@@ -65,7 +64,7 @@ const HomeScreen = () => {
     >
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-      {/* Movie Cards Grid */}
+       
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
         {movies.length === 0 ? (
           <p>No movies found. Please try again.</p>
